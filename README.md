@@ -13,7 +13,9 @@ This repository reproduces all analyses, figures, and tables for:
 
 > Cepaluni, G., & Civitarese, J. (2025). *Gun Violence and the Political Economy of Forced Labor Investigations in Brazil.* R&R at World Development.
 
-The project examines how gun availability affects the efficiency of Brazil's anti-slavery enforcement, combining a rational-choice model and a shift–share empirical design. All results, tables, and figures in the paper and Appendix can be generated from the scripts provided here.
+The project examines how gun availability affects the efficiency of Brazil's anti-slavery enforcement, combining a rational-choice model and a shift–share empirical design.
+
+All results, tables, and figures in the paper and Appendix can be generated from the scripts provided here.
 
 ---
 
@@ -29,14 +31,13 @@ guns-forced-labor-replication/
 │       └── slavery_guns_census_panel_with_statecapacity_cleaned.rds
 │
 ├── 02_code/
-│   ├── slaves_guns_shift_share_initial.R           # Lagged & initial exposure instruments
-│   ├── slaves_guns_baseline.R                      # Baseline (2000) × t trends
-│   ├── slaves_guns_main.R                          # Master analysis pipeline (~1000 lines)
-│   ├── slaves_guns_main_replication_tables.R       # Comprehensive LaTeX tables
-│   ├── slaves_guns_state_capacity.R                # Hit rates & capacity mechanisms
-│   ├── slaves_guns_fiscal_adm_capacity_quartiles.R # Heterogeneity: Revenue/GDP & HDI
-│   ├── slaves_guns_state_capacity_quartiles_code.R # Heterogeneity: RECORM quartiles
-│   └── slaves_guns_trends.R                        # State×year FE & 5-year muni trends
+│   ├── 01_slaves_guns_main.R                          # Master analysis pipeline (~1000 lines)
+│   ├── 02_slaves_guns_main_replication_tables.R       # Comprehensive LaTeX tables
+│   ├── 03_slaves_guns_baseline.R                      # Baseline (2000) × t trends
+│   ├── 04_slaves_guns_trends.R                        # State×year FE & 5-year muni trends
+│   ├── 05_slaves_guns_shift_share_initial.R           # Lagged & initial exposure instruments
+│   ├── 06_slaves_guns_state_capacity.R                # Hit rates & capacity mechanisms
+│   └── 07_slaves_guns_fiscal_adm_capacity_quartiles.R # Heterogeneity: Revenue/GDP, HDI & RECORM
 │
 ├── 03_output/
 │   ├── tables/                       # LaTeX (.tex) and CSV regression tables
@@ -106,11 +107,11 @@ Users with MTE access should place raw files under `01_data/raw/` and run prepro
 
 ### Step 2 — Execution Order
 
-To reproduce all main and appendix results, run scripts in the following sequence:
+To reproduce all main and appendix results, **run scripts 01–07 in numerical order:**
 
 #### **Core Results**
 
-1. **`slaves_guns_main.R`** → Master analysis pipeline
+**1. `01_slaves_guns_main.R`** → Master analysis pipeline
    - 12 main regressions (bivariate, controls, state×year FE)
    - Coefficient plots (`main_results.pdf`)
    - Parallel trends tests (`bartik_common_trends_plots.pdf`)
@@ -122,18 +123,18 @@ To reproduce all main and appendix results, run scripts in the following sequenc
    - Regional analysis (5 Brazilian regions)
    - Budget execution figures (`execution_ratios_trend.png`, `national_trend_appointments.png`)
 
-2. **`slaves_guns_main_replication_tables.R`** → Comprehensive tables for reviewer response
+**2. `02_slaves_guns_main_replication_tables.R`** → Comprehensive tables for reviewer response
    - **Tables 1–4:** Main results with stepwise controls (LaTeX + CSV + template versions)
    - **Tables 5–8:** Leave-one-state-out robustness (26 states)
    - **Tables 9–12:** Comprehensive robustness (Conley SEs, rural trimming, Poisson)
 
 #### **Robustness Checks**
 
-3. **`slaves_guns_baseline.R`** → Baseline (2000) × t municipality-specific trends
+**3. `03_slaves_guns_baseline.R`** → Baseline (2000) × t municipality-specific trends
    - Tests 4 baseline characteristics: rural share, log population, log GDP per capita, agricultural intensity
    - Produces 2 compact tables (operations & slave outcomes)
 
-4. **`slaves_guns_trends.R`** → Progressive fixed effects specifications
+**4. `04_slaves_guns_trends.R`** → Progressive fixed effects specifications
    - Municipality + Year FE
    - Municipality + State×Year FE
    - Municipality×5-year-group trends (collinearity workaround)
@@ -142,30 +143,24 @@ To reproduce all main and appendix results, run scripts in the following sequenc
 
 #### **Mechanism & Heterogeneity**
 
-5. **`slaves_guns_shift_share_initial.R`** → Alternative instruments
+**5. `05_slaves_guns_shift_share_initial.R`** → Alternative instruments
    - 2-year lagged exposure
    - 3-year lagged exposure
    - Initial (year 2000) exposure
    - Produces coefficient plot grid (`shift_share_regression_plots_short_titles.pdf`)
 
-6. **`slaves_guns_state_capacity.R`** → Hit rates & false leads tests
+**6. `06_slaves_guns_state_capacity.R`** → Hit rates & false leads tests
    - Linear probability models (LPM) for hit rates (probability audit finds slaves | audit occurred)
    - State×Year FE robustness
    - Capacity interaction effects
    - **Outputs:** `main_results_summary.tex` and `.html`
 
-7. **`slaves_guns_fiscal_adm_capacity_quartiles.R`** → Heterogeneity by municipal characteristics
+**7. `07_slaves_guns_fiscal_adm_capacity_quartiles.R`** → Heterogeneity by municipal characteristics
    - **Part 1:** Revenue/GDP ratio quartiles (fiscal efficiency)
    - **Part 2:** HDI (IDHM) quartiles (human development)
+   - **Part 3:** RECORM quartiles (absolute fiscal capacity)
    - Uses `ss_imports` only
-   - **Outputs:** CSV, Excel, and LaTeX tables
-
-8. **`slaves_guns_state_capacity_quartiles_code.R`** → RECORM quartiles
-   - Municipal current revenue (RECORM) at baseline 2000
-   - Tests heterogeneity by absolute fiscal capacity
-   - **Outputs:** `recorm_quartile_imports_results.csv/.xlsx/.tex`
-
-**Note:** `slaves_guns_state_capacity_quartiles.R` is an exact duplicate of script #7 and can be ignored.
+   - **Outputs:** CSV, Excel, and LaTeX tables for all three heterogeneity analyses
 
 ---
 
@@ -267,3 +262,17 @@ If you use these materials, please cite:
   Email: jc9663@nyu.edu
 
 ---
+```
+
+**Commit message:**
+```
+Finalize README with 7 numbered scripts and complete documentation
+```
+
+**Extended description:**
+```
+- Remove script #8 (excluded per author request)
+- Consolidate Part 3 (RECORM) into script #7 description
+- Update repository structure to show only 01-07 scripts
+- Clean execution order with numerical sequence
+- Final version ready for journal submission
