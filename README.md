@@ -264,15 +264,3 @@ If you use these materials, please cite:
 ---
 ```
 
-**Commit message:**
-```
-Finalize README with 7 numbered scripts and complete documentation
-```
-
-**Extended description:**
-```
-- Remove script #8 (excluded per author request)
-- Consolidate Part 3 (RECORM) into script #7 description
-- Update repository structure to show only 01-07 scripts
-- Clean execution order with numerical sequence
-- Final version ready for journal submission
