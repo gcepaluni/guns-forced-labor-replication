@@ -1,7 +1,7 @@
 # Gun Violence and the Political Economy of Forced Labor Investigations in Brazil
 
 **Replication Package for World Development (2025)**  
-Gabriel Cepaluni (UNESP & University of Notre Dame)  
+Gabriel Cepaluni (UNESP)  
 Jamil Civitarese (New York University)  
 Version: October 2025
 
@@ -11,11 +11,9 @@ Version: October 2025
 
 This repository reproduces all analyses, figures, and tables for:
 
-> Cepaluni, G., & Civitarese, J. (2025). *Gun Violence and the Political Economy of Forced Labor Investigations in Brazil.* World Development.
+> Cepaluni, G., & Civitarese, J. (2025). *Gun Violence and the Political Economy of Forced Labor Investigations in Brazil.* R&R at World Development.
 
-The project examines how gun availability affects the efficiency of Brazil's anti-slavery enforcement, combining a rational-choice model and a shift–share empirical design.
-
-All results, tables, and figures in the paper and Appendix can be generated from the scripts provided here.
+The project examines how gun availability affects the efficiency of Brazil's anti-slavery enforcement, combining a rational-choice model and a shift–share empirical design. All results, tables, and figures in the paper and Appendix can be generated from the scripts provided here.
 
 ---
 
@@ -25,11 +23,10 @@ guns-forced-labor-replication/
 │
 ├── 01_data/
 │   ├── raw/                          # (Not included; instructions below)
-│   ├── processed/                    # Cleaned datasets (.rds, .csv)
-│   │   ├── slavery_guns_census_panel.rds
-│   │   ├── slavery_guns_census_panel_with_statecapacity.rds
-│   │   └── slavery_guns_census_panel_with_statecapacity_cleaned.rds
-│   └── DATA_DICTIONARY.md            # Complete variable definitions
+│   └── processed/                    # Cleaned datasets (.rds, .csv)
+│       ├── slavery_guns_census_panel.rds
+│       ├── slavery_guns_census_panel_with_statecapacity.rds
+│       └── slavery_guns_census_panel_with_statecapacity_cleaned.rds
 │
 ├── 02_code/
 │   ├── slaves_guns_shift_share_initial.R           # Lagged & initial exposure instruments
@@ -103,7 +100,7 @@ The following cleaned datasets are included in `01_data/processed/`:
 - `state_code` — State identifier (UF code)
 - `latitude`, `longitude` — Municipal centroids
 
-📖 **See [`01_data/DATA_DICTIONARY.md`](01_data/DATA_DICTIONARY.md) for complete variable definitions and data sources.**
+Users with MTE access should place raw files under `01_data/raw/` and run preprocessing scripts (available upon request).
 
 ---
 
@@ -172,33 +169,6 @@ To reproduce all main and appendix results, run scripts in the following sequenc
 
 ---
 
-## Output Summary
-
-All outputs are automatically written to `03_output/`:
-
-| Output Type | Files | Description |
-|-------------|-------|-------------|
-| **Main results** | `tables/table01-04_main_*.tex/csv` | Stepwise controls (audits & slavery × imports/Taurus) |
-| **Template tables** | `tables/table01-04_main_*_template.tex` | Same as above, showing all control coefficients |
-| **Leave-one-out** | `tables/table05-08_loo_*.tex/csv` | State-by-state robustness (26 states) |
-| **Robustness** | `tables/table09-12_robustness_*.tex/csv` | Conley SEs, rural trimming, Poisson |
-| **Baseline trends** | `tables/revresp_*_baseline_trends_compact.tex/csv` | Municipality-specific baseline × t |
-| **Capacity quartiles** | `tables/*_quartile_*_results.tex/csv/xlsx` | Revenue/GDP, HDI, RECORM heterogeneity |
-| **Coefficient plots** | `figures/main_results.pdf` | Grid of 12 main models |
-| | `figures/rural_pop_coef_plot.pdf` | Rural population robustness |
-| | `figures/shift_share_conley_cowplot.pdf` | Conley spatial SEs |
-| | `figures/main_results_poisson.pdf` | Poisson model results |
-| **Trends & diagnostics** | `figures/bartik_common_trends_plots.pdf` | Parallel trends by exposure |
-| | `figures/coefficient_plot_shift_share*.png` | Homicide quantile heterogeneity |
-| | `figures/execution_ratios_trend.png` | Budget execution 2019–2025 |
-| | `figures/national_trend_appointments.png` | Labor inspector appointments 2000–2019 |
-| **Regional analysis** | `figures/Slavesbartik_*.pdf` | Regional coefficients (slaves outcome) |
-| | `figures/Auditbartik_*.pdf` | Regional coefficients (audits outcome) |
-| | `figures/sum_of_*_plot.pdf` | Bar charts by region |
-| **Randomization inference** | `figures/ritest_plots.png` | RI distributions for 12 models |
-
----
-
 ## Environment and Dependencies
 
 **Replication tested on:**
@@ -240,7 +210,7 @@ remotes::install_github("grantmcdermott/ritest")
 
 Due to legal restrictions under **Brazil's Freedom of Information Law (Lei nº 12.527/2011)**, raw data from the Ministry of Labor and Employment (MTE/GEFM) containing municipality-level forced labor audits and worker rescues cannot be redistributed.
 
-**All code is fully functional** with user-supplied datasets containing the same variable structure documented in [`01_data/DATA_DICTIONARY.md`](01_data/DATA_DICTIONARY.md).
+**All code is fully functional** with user-supplied datasets containing the same variable structure.
 
 **Minimum required variables:**
 - `ibge_cod` (municipality identifier)
@@ -266,7 +236,7 @@ Due to legal restrictions under **Brazil's Freedom of Information Law (Lei nº 1
 **Data sources:**
 - **Public datasets** (NISAT, Taurus financials, IBGE/IPEA indicators) are openly available through their respective portals
 - **Restricted MTE data** can be obtained upon request from the Ministry of Labor under Lei nº 12.527/2011
-- **Processed datasets** included in this repository are documented in [`01_data/DATA_DICTIONARY.md`](01_data/DATA_DICTIONARY.md)
+- **Processed datasets** included in this repository contain municipality-year panels (2000-2019) with forced labor outcomes, shift-share instruments, and socioeconomic controls
 
 ---
 
@@ -290,7 +260,6 @@ If you use these materials, please cite:
 
 - **Gabriel Cepaluni**  
   Department of International Politics, São Paulo State University (UNESP)  
-  Kellogg Institute for International Studies, University of Notre Dame  
   Email: gabriel.cepaluni@unesp.br
 
 - **Jamil Civitarese**  
@@ -298,32 +267,3 @@ If you use these materials, please cite:
   Email: jc9663@nyu.edu
 
 ---
-
-## Troubleshooting
-
-**Common issues:**
-
-1. **"File not found" errors:** Verify paths in each script match your directory structure. Update `in_path` and `out_dir` variables as needed.
-
-2. **Package conflicts:** If `fixest` clustering fails, update to version ≥0.12.0: `install.packages("fixest")`
-
-3. **Memory limitations:** `slaves_guns_main.R` processes ~100,000 municipality-year observations. Recommended RAM: 8GB+
-
-4. **Conley SE warnings:** Spatial autocorrelation calculations require longitude/latitude. Verify these columns exist in your data.
-
-5. **Missing DT_clean/DT_hit objects:** `slaves_guns_trends.R` requires pre-loaded data objects. Run data preparation section from `slaves_guns_main.R` first, or modify script to load data directly.
-
-6. **Data structure questions:** Consult [`01_data/DATA_DICTIONARY.md`](01_data/DATA_DICTIONARY.md) for complete variable definitions, units, and sources.
-
----
-```
-
-**Commit message:**
-```
-Add dataset documentation and DATA_DICTIONARY.md reference
-
-- Document three available processed datasets with sizes and dates
-- Add core variable overview in README
-- Link to DATA_DICTIONARY.md for complete variable definitions
-- Update repository structure to show DATA_DICTIONARY.md location
-- Add troubleshooting item #6 for data structure questions
