@@ -27,8 +27,9 @@ guns-forced-labor-replication/
 │   ├── raw/                          # (Not included; instructions below)
 │   ├── processed/                    # Cleaned datasets (.rds, .csv)
 │   │   ├── slavery_guns_census_panel.rds
+│   │   ├── slavery_guns_census_panel_with_statecapacity.rds
 │   │   └── slavery_guns_census_panel_with_statecapacity_cleaned.rds
-│   └── codebook.pdf                  # Variable descriptions and sources
+│   └── DATA_DICTIONARY.md            # Complete variable definitions
 │
 ├── 02_code/
 │   ├── slaves_guns_shift_share_initial.R           # Lagged & initial exposure instruments
@@ -64,11 +65,45 @@ The raw data include both **public** and **restricted** components:
 | Ministry of Labor and Employment (MTE, GEFM dataset) | Restricted | Forced-labor audits and rescued workers (accessed under Lei nº 12.527/2011) |
 | IPEA / IBGE | Public | Socioeconomic indicators and agricultural controls |
 
-**Processed datasets required:**
-- `slavery_guns_census_panel.rds` — Main panel (operations, slave, shift-share instruments, controls)
-- `slavery_guns_census_panel_with_statecapacity_cleaned.rds` — Extended panel with state capacity variables (HDI, RECORM, security spending)
+#### Available Processed Datasets
 
-Users with MTE access should place raw files under `01_data/raw/` and run preprocessing scripts (available upon request).
+The following cleaned datasets are included in `01_data/processed/`:
+
+| File | Size | Last Updated | Description |
+|------|------|--------------|-------------|
+| `slavery_guns_census_panel.rds` | 28.6 KB | 2025-08-18 | **Main panel dataset** with municipality-year observations (2000-2019): operations, slave, shift-share instruments (ss_imports, ss_taurus), socioeconomic controls, geographic coordinates |
+| `slavery_guns_census_panel_with_statecapacity.rds` | 29.8 KB | 2025-09-29 | **Extended panel** adding state capacity variables: HDI (p_idhm), security spending, baseline characteristics for trend analysis |
+| `slavery_guns_census_panel_with_statecapacity_cleaned.rds` | 30.2 KB | 2025-09-29 | **Final cleaned version** used in all analyses; includes RECORM (municipal current revenue), complete variable set for heterogeneity analyses |
+
+**Core Variables:**
+
+**Outcomes:**
+- `operations` — Number of forced labor audits per municipality-year
+- `slave` — Number of workers rescued from slavery-like conditions
+
+**Shift-Share Instruments:**
+- `ss_imports` — Gun imports × homicide exposure
+- `ss_taurus` — Taurus revenue × homicide exposure
+- `exposure` — Municipality's time-averaged share of national homicides
+
+**Controls:**
+- `mean_harvested_area_interp` — Agricultural land (hectares)
+- `gdp_per_capita` — Municipal GDP per capita (BRL, constant 2010)
+- `mean_number_cattle_interp` — Cattle herd size
+- `mean_revenue_interp` — Total municipal revenue (BRL)
+
+**State Capacity (extended versions):**
+- `p_idhm` — Municipal Human Development Index (0-1)
+- `p_desp_funcao_seguranca_mun` — Security spending (% of budget)
+- `RECORM` — Municipal current revenue (baseline 2000)
+
+**Geography:**
+- `ibge_cod` — 7-digit municipal identifier
+- `year` — Calendar year (2000-2019)
+- `state_code` — State identifier (UF code)
+- `latitude`, `longitude` — Municipal centroids
+
+📖 **See [`01_data/DATA_DICTIONARY.md`](01_data/DATA_DICTIONARY.md) for complete variable definitions and data sources.**
 
 ---
 
@@ -77,6 +112,7 @@ Users with MTE access should place raw files under `01_data/raw/` and run prepro
 To reproduce all main and appendix results, run scripts in the following sequence:
 
 #### **Core Results**
+
 1. **`slaves_guns_main.R`** → Master analysis pipeline
    - 12 main regressions (bivariate, controls, state×year FE)
    - Coefficient plots (`main_results.pdf`)
@@ -95,6 +131,7 @@ To reproduce all main and appendix results, run scripts in the following sequenc
    - **Tables 9–12:** Comprehensive robustness (Conley SEs, rural trimming, Poisson)
 
 #### **Robustness Checks**
+
 3. **`slaves_guns_baseline.R`** → Baseline (2000) × t municipality-specific trends
    - Tests 4 baseline characteristics: rural share, log population, log GDP per capita, agricultural intensity
    - Produces 2 compact tables (operations & slave outcomes)
@@ -107,6 +144,7 @@ To reproduce all main and appendix results, run scripts in the following sequenc
    - **Table 2:** Hit rate analysis with capacity interactions
 
 #### **Mechanism & Heterogeneity**
+
 5. **`slaves_guns_shift_share_initial.R`** → Alternative instruments
    - 2-year lagged exposure
    - 3-year lagged exposure
@@ -202,7 +240,9 @@ remotes::install_github("grantmcdermott/ritest")
 
 Due to legal restrictions under **Brazil's Freedom of Information Law (Lei nº 12.527/2011)**, raw data from the Ministry of Labor and Employment (MTE/GEFM) containing municipality-level forced labor audits and worker rescues cannot be redistributed.
 
-**All code is fully functional** with user-supplied datasets containing the same variable structure:
+**All code is fully functional** with user-supplied datasets containing the same variable structure documented in [`01_data/DATA_DICTIONARY.md`](01_data/DATA_DICTIONARY.md).
+
+**Minimum required variables:**
 - `ibge_cod` (municipality identifier)
 - `year` (2000–2019)
 - `operations` (number of labor audits)
@@ -210,7 +250,8 @@ Due to legal restrictions under **Brazil's Freedom of Information Law (Lei nº 1
 - `ss_imports`, `ss_taurus` (shift-share instruments)
 - Socioeconomic controls (harvested area, GDP per capita, cattle, municipal revenue)
 
-**To request access:**
+**To request access to MTE data:**
+
 > Secretaria de Inspeção do Trabalho (SIT)  
 > Ministério do Trabalho e Emprego  
 > Portal da Transparência: [https://www.gov.br/pt-br/acesso-a-informacao](https://www.gov.br/pt-br/acesso-a-informacao)
@@ -225,6 +266,7 @@ Due to legal restrictions under **Brazil's Freedom of Information Law (Lei nº 1
 **Data sources:**
 - **Public datasets** (NISAT, Taurus financials, IBGE/IPEA indicators) are openly available through their respective portals
 - **Restricted MTE data** can be obtained upon request from the Ministry of Labor under Lei nº 12.527/2011
+- **Processed datasets** included in this repository are documented in [`01_data/DATA_DICTIONARY.md`](01_data/DATA_DICTIONARY.md)
 
 ---
 
@@ -271,4 +313,17 @@ If you use these materials, please cite:
 
 5. **Missing DT_clean/DT_hit objects:** `slaves_guns_trends.R` requires pre-loaded data objects. Run data preparation section from `slaves_guns_main.R` first, or modify script to load data directly.
 
+6. **Data structure questions:** Consult [`01_data/DATA_DICTIONARY.md`](01_data/DATA_DICTIONARY.md) for complete variable definitions, units, and sources.
+
 ---
+```
+
+**Commit message:**
+```
+Add dataset documentation and DATA_DICTIONARY.md reference
+
+- Document three available processed datasets with sizes and dates
+- Add core variable overview in README
+- Link to DATA_DICTIONARY.md for complete variable definitions
+- Update repository structure to show DATA_DICTIONARY.md location
+- Add troubleshooting item #6 for data structure questions
