@@ -1,0 +1,43 @@
+Ano,PI,Ação,Dotação Atual,Empenhado,Liquidado,Pago
+2000,,Fiscalização para Erradicação do Trabalho Escravizador e Degradante,300700,294588,294588,286294
+2001,,Fiscalização para Erradicação do Trabalho Escravizador e Degradante,1823190,1731707,1731707,1656040
+2002,,Fiscalização para Erradicação do Trabalho Escravizador e Degradante,1000000,901290,901290,855550
+2003,,Fiscalização para Erradicação do Trabalho Escravizador e Degradante,1670000,1612752,1612752,1582766
+2004,,Fiscalização para Erradicação do Trabalho Escravo,2960000,2336172,2336172,2331905
+2005,,Fiscalização para Erradicação do Trabalho Escravo,3060000,2931410,2931410,2831255
+2006,,Fiscalização para Erradicação do Trabalho Escravo,4077196,3293687,3293687,3226844
+2007,,Fiscalização para Erradicação do Trabalho Escravo,5180482,3964323,3431312,3431012
+2008,,Fiscalização para Erradicação do Trabalho Escravo,5600000,4424129,4383507,4375068
+2009,,Fiscalização para Erradicação do Trabalho Escravo,5600000,3933923,3883971,3859221
+2010,,Fiscalização para Erradicação do Trabalho Escravo,5350000,3516346,3272538,3264336
+2011,,Fiscalização para Erradicação do Trabalho Escravo,5352000,3566503,3402666,3402666
+2012,,Fiscalização para Erradicação do Trabalho Escravo,5352000,3615340,3201221,3193604
+2013,000A,Assistência Emergencial a Trabalhadores Vítimas de Trabalho Escravo,110000,42147,38402,38402
+2013,0004,Fiscalização para Erradicação do Trabalho Escravo,3300000,2886426,2775711,2718640
+2014,000A,Assistência Emergencial a Trabalhadores Vítimas de Trabalho Escravo,135000,15921,15921,15921
+2014,0004,Fiscalização para Erradicação do Trabalho Escravo,2508000,2224906,1968840,1968840
+2015,000A,Assistência Emergencial a Trabalhadores Vítimas de Trabalho Escravo,135000,23363,23363,23363
+2015,0004,Fiscalização para Erradicação do Trabalho Escravo,3308000,1971004,1936175,1936175
+2016,000A,Assistência Emergencial a Trabalhadores Vítimas de Trabalho Escravo,53768,6947,6947,6947
+2016,0004,Fiscalização para Erradicação do Trabalho Escravo,2765184,1664782,1664532,1664532
+2017,000A,Assistência Emergencial a Trabalhadores Vítimas de Trabalho Escravo,75852,6947,6947,6947
+2017,0004,Fiscalização para Erradicação do Trabalho Escravo,3856439,2651157,2648288,2608646
+2018,120YU456017,Assistência Emergencial a Trabalhadores Vítimas de Trabalho Escravo,85557.39,70555.7,48785.7,48785.7
+2018,120YU456099,Fiscalização para Erradicação do Trabalho Escravo,2925226.71,2706319.94,2544211.58,2543498.36
+2019,120YU441017,Assistência a Trabalhador Vítima de Trabalho Escravo,8977.46,6977.46,6977.46,6977.46
+2019,120YU441099,Fiscalização para Erradicação do Trabalho Escravo,1465574.42,1341681.77,1286259.88,1282110.7
+2019,120YU456017,Assistência Emergencial a Trabalhadores Vítimas de Trabalho Escravo,21280.4,21280.4,21280.4,21280.4
+2019,120YU456099,Fiscalização para Erradicação do Trabalho Escravo,704640.42,704640.42,798688.15,801146.67
+2019,120YU456099,Fiscalização para Erradicação do Trabalho Escravo,263200.0,263200.0,169152.27,166693.75
+2020,25824ESCRAV,Fiscalização para Combate ao Trabalho Escravo,2186753.45,1590844.93,1334311.36,1334311.36
+2020,25824VITIMA,Assistência a Trabalhador Vítima de Trabalho Escravo,13753.25,13753.25,13753.25,13753.25
+2021,25824ESCRAV,Fiscalização para Combate ao Trabalho Escravo,7511019.47,7495630.9,2511804.21,2511633.45
+2021,25824VITIMA,Assistência a Trabalhador Vítima de Trabalho Escravo,28748.91,27987.8,27987.8,27987.8
+2022,25824ESCRAV,Fiscalização para Combate ao Trabalho Escravo,9825408.29,9660424.79,9350191.98,9349180.47
+2022,25824VITIMA,Assistência a Trabalhador Vítima de Trabalho Escravo,79827.41,71850.41,71850.41,71850.41
+2023,25824ESCRAV,Fiscalização para Combate ao Trabalho Escravo,6863262.14,6813260.9,6339414.45,6334848.0
+2023,25824VITIMA,Assistência a Trabalhador Vítima de Trabalho Escravo,71918.94,61077.18,61077.18,61077.18
+2024,25824ESCRAV,Fiscalização para Combate ao Trabalho Escravo,4773171.04,4769652.3,4620122.64,4597498.15
+2024,25824VITIMA,Assistência a Trabalhador Vítima de Trabalho Escravo,15364.48,13864.48,13864.48,13864.48
+2025,25824ESCRAV,Fiscalização para Combate ao Trabalho Escravo,2836625.21,2748347.32,2348423.12,2344989.24
+2025,25824VITIMA,Assistência a Trabalhador Vítima de Trabalho Escravo,145645.43,89920.31,89902.31,89902.31
