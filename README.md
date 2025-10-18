@@ -1,4 +1,3 @@
-```markdown
 # Gun Violence and the Political Economy of Forced Labor Investigations in Brazil
 
 **Replication Package (R&R at *World Development*)**  
@@ -13,14 +12,12 @@ This repository reproduces the analyses, figures, and tables for:
 
 > Cepaluni, G., & Civitarese, J. *Gun Violence and the Political Economy of Forced Labor Investigations in Brazil* (R&R at *World Development*).
 
-The project studies how gun availability affects Brazil’s anti-slavery enforcement via an informational mechanism, combining a rational-choice framework with a shift–share empirical design.
+The project studies how gun availability affects Brazil's anti-slavery enforcement via an informational mechanism, combining a rational-choice framework with a shift–share empirical design.
 
 ---
 
 ## Repository Structure
-
 ```
-
 guns-forced-labor-replication/
 │
 ├── Data/
@@ -40,10 +37,9 @@ guns-forced-labor-replication/
 │   └── 08_slaves_guns_fiscal_adm_capacity_quartiles.R
 │
 └── Results/
-├── tables/
-└── figures/
-
-````
+    ├── tables/
+    └── figures/
+```
 
 ---
 
@@ -56,7 +52,7 @@ guns-forced-labor-replication/
 **Shift–share variables**
 - `ss_imports`: small-arms imports × homicide exposure
 - `ss_taurus`: Taurus revenue × homicide exposure
-- `exposure`: municipality’s time-averaged share of national firearm homicides
+- `exposure`: municipality's time-averaged share of national firearm homicides
 
 **Controls**
 - `mean_harvested_area_interp`, `gdp_per_capita`, `mean_number_cattle_interp`, `mean_revenue_interp`
@@ -108,7 +104,7 @@ install.packages(c(
   "modelsummary","xtable","writexl","conleyreg","cowplot","patchwork","tidylog","haven"
 ))
 remotes::install_github("grantmcdermott/ritest")
-````
+```
 
 ---
 
@@ -118,7 +114,7 @@ Due to **Lei nº 12.527/2011**, raw MTE/GEFM microdata used to construct `operat
 
 **To request access:**
 
-> Secretaria de Inspeção do Trabalho (SIT) – Ministério do Trabalho e Emprego
+> Secretaria de Inspeção do Trabalho (SIT) – Ministério do Trabalho e Emprego  
 > [https://www.gov.br/pt-br/acesso-a-informacao](https://www.gov.br/pt-br/acesso-a-informacao)
 
 Public sources (e.g., NISAT small-arms transfers, Taurus financial reports, IBGE/IPEA indicators) should be obtained from their official portals.
@@ -127,7 +123,7 @@ Public sources (e.g., NISAT small-arms transfers, Taurus financial reports, IBGE
 
 ## License
 
-**MIT License** (reuse permitted with attribution).
+**MIT License** (reuse permitted with attribution).  
 © 2025 Gabriel Cepaluni & Jamil Civitarese
 
 ---
@@ -136,6 +132,3 @@ Public sources (e.g., NISAT small-arms transfers, Taurus financial reports, IBGE
 
 * **Gabriel Cepaluni** — UNESP — [gabriel.cepaluni@unesp.br](mailto:gabriel.cepaluni@unesp.br)
 * **Jamil Civitarese** — NYU — [jc9663@nyu.edu](mailto:jc9663@nyu.edu)
-
-```
-```
