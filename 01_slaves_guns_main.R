@@ -1,10 +1,34 @@
-#####################################################################################################################################
-############################### CODE ################################################################################################
-#####################################################################################################################################
+################################################################################
+# GUN VIOLENCE AND THE POLITICAL ECONOMY OF FORCED LABOR INVESTIGATIONS IN BRAZIL
+# MAIN ANALYSIS AND EXTENDED ROBUSTNESS PIPELINE
+# Author: Gabriel Cepaluni
+# Date:   2025
+################################################################################
+# DESCRIPTION:
+#   Comprehensive R pipeline for the replication of
+#   “Gun Violence and the Political Economy of Forced Labor Investigations in Brazil.”
+#   This script implements:
+#     (1) Data cleaning and descriptive statistics
+#     (2) Main fixed-effects (FE) and Poisson (PPML) regressions
+#     (3) Coefficient and common-trend plots
+#     (4) Randomization inference (ritest)
+#     (5) Regional and quantile heterogeneity analyses
+#     (6) Robustness checks using Conley SEs and rural-population filters
+#     (7) Budget execution and institutional capacity figures
+#
+# OUTPUTS:
+#   All LaTeX tables, PDF figures, and PNG plots are automatically saved to:
+#     C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/WD_replication_files/Results
+#
+# NOTES:
+#   • Designed for reproducibility under R ≥ 4.3 and fixest ≥ 0.11
+#   • Compatible with Windows-safe paths and ASCII-safe LaTeX export
+#   • Produces journal-ready figures consistent with World Development replication standards
+################################################################################
 
 rm(list = ls())
 
-setwd("C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/Resultados")
+setwd("C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/WD_replication_files/Results")
 
 # Install packages if they are not already installed
 required_packages <- c("haven", "fixest", "dplyr", "remotes", 
@@ -52,10 +76,12 @@ library(conleyreg)
 library(etwfe)
 library(cowplot)
 
-### Cepaluni Data
+################################################################################
+### Data
+################################################################################
 
-df_reg <- readRDS("C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/Datasets/dfGunsPaperNovember24.rds") %>% 
-  select(ibge_cod, year, homicidios, slave, operations, taurusRevenue, values_imp, 
+df_reg <- readRDS("C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/WD_replication_files/Data/dfGunsPaperNovember24.rds") %>%
+    select(ibge_cod, year, homicidios, slave, operations, taurusRevenue, values_imp, 
         mean_uf_cod, mean_harvested_area_interp, mean_pib_mun_interp, mean_population_interp,
         mean_number_cattle_interp, mean_revenue_interp,
         pop_rural_2000, latitude, longitude) %>% 
@@ -477,11 +503,25 @@ plot(est_ri_reg11)
 # Plot for est_ri_reg12
 plot(est_ri_reg12)
 
-# Assuming you have already run est_ri_reg1 to est_ri_reg12 as mentioned earlier
-# Open a PDF device to save the plots
-png("ritest_plots.png", width = 800, height = 1200) # Adjust width and height as needed
+# === SAVE ALL RITEST PLOTS TO FILE ===
+png("C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/WD_replication_files/Results/ritest_plots.png",
+    width = 900, height = 1600, res = 120)
 
-# Close the PDF device
+par(mfrow = c(6, 2), mar = c(2, 2, 2, 1))  # layout: 6 rows, 2 columns
+
+plot(est_ri_reg1, main = "RI Test 1: ss_imports")
+plot(est_ri_reg2, main = "RI Test 2: ss_taurus")
+plot(est_ri_reg3, main = "RI Test 3: ss_imports")
+plot(est_ri_reg4, main = "RI Test 4: ss_taurus")
+plot(est_ri_reg5, main = "RI Test 5: ss_imports")
+plot(est_ri_reg6, main = "RI Test 6: ss_taurus")
+plot(est_ri_reg7, main = "RI Test 7: ss_imports")
+plot(est_ri_reg8, main = "RI Test 8: ss_taurus")
+plot(est_ri_reg9, main = "RI Test 9: ss_imports")
+plot(est_ri_reg10, main = "RI Test 10: ss_taurus")
+plot(est_ri_reg11, main = "RI Test 11: ss_imports")
+plot(est_ri_reg12, main = "RI Test 12: ss_taurus")
+
 dev.off()
 
 #####################################################################################################################################
@@ -1336,8 +1376,8 @@ aft_file <- try_paths(
   "C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/New_Data/LAI/Dados/AFT_99_a_2025_por_UF.csv"
 )
 
-out_dir <- "Resultados"
-if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
+out_dir <- "C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/WD_replication_files/Results"
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 ## 2) Helpers ------------------------------------------------------------------
 # Convert Brazilian numeric strings like "1.234.567,89" -> 1234567.89

@@ -1,6 +1,26 @@
-#####################################################################################################################################
-######################################## COMPREHENSIVE TABLES FOR REVIEWER RESPONSE — FIXED VERSION #################################
-#####################################################################################################################################
+################################################################################
+# GUN VIOLENCE AND THE POLITICAL ECONOMY OF FORCED LABOR INVESTIGATIONS IN BRAZIL
+# COMPREHENSIVE ROBUSTNESS PIPELINE — REPLICATION FOR REVIEWER RESPONSE
+# Author: Gabriel Cepaluni
+# Date:   2025
+################################################################################
+# DESCRIPTION:
+#   Generates all robustness outputs for
+#   “Gun Violence and the Political Economy of Forced Labor Investigations in Brazil.”
+#   Specifically builds:
+#     • Main and template regression tables
+#     • Leave-one-out (LOO) robustness checks
+#     • Extended and reviewer-requested robustness tables
+#
+# OUTPUTS:
+#   All LaTeX (.tex) and CSV (.csv) tables are saved under:
+#     C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/WD_replication_files/Results
+#
+# NOTES:
+#   • Fully reproducible with R ≥ 4.3 and fixest ≥ 0.11
+#   • Ensures consistency with the main analysis pipeline
+#   • Uses ASCII-safe export for journal submission
+################################################################################
 
 rm(list = ls())
 options(stringsAsFactors = FALSE)
@@ -60,7 +80,7 @@ stars <- function(p) {
 #####################################################################################################################################
 
 # Load and prepare the dataset
-df_reg <- readRDS("C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/Datasets/dfGunsPaperNovember24.rds") %>%
+df_reg <- readRDS("C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/WD_replication_files/Data/dfGunsPaperNovember24.rds") %>%
   select(
     ibge_cod, year, homicidios, suicidios, slave, operations, taurusRevenue, values_imp,
     mean_uf_cod, mean_harvested_area_interp, mean_pib_mun_interp, mean_population_interp,

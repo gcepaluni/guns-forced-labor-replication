@@ -1,12 +1,32 @@
-########################################################################################################
-############ Reviewer Request: Baseline(2000) trends & optional UF×Year fixed effects (compact) ########
-########################################################################################################
-# This script is robust to missing/renamed columns and prints ONLY the two compact tables it builds:
-#   (1) Outcome = operations   (2) Outcome = slave
-# Each table shows the coefficient (SE) for both shift-share regressors under:
-#   - Municipality + Year FE + baseline(2000)×t trends
-#   - Municipality + UF×Year FE + baseline(2000)×t trends
-########################################################################################################
+################################################################################
+# GUN VIOLENCE AND THE POLITICAL ECONOMY OF FORCED LABOR INVESTIGATIONS IN BRAZIL
+# REVIEWER REQUEST — BASELINE (2000) TRENDS AND UF×YEAR FIXED EFFECTS
+# Author: Gabriel Cepaluni
+# Date:   2025
+################################################################################
+# DESCRIPTION:
+#   Implements the reviewer-requested extension adding municipality-specific
+#   baseline (2000) trends and UF×Year fixed effects. Produces compact tables
+#   reporting the effects of both shift–share instruments (Taurus, Imports)
+#   on the two main outcomes:
+#     • Operations (audits)
+#     • Slavery cases
+#
+# SPECIFICATIONS:
+#     (1) Municipality + Year FE + baseline(2000)×t trends
+#     (2) Municipality + UF×Year FE + baseline(2000)×t trends
+#
+# OUTPUTS:
+#   - revresp_operations_baseline_trends_compact.{tex,csv}
+#   - revresp_slave_baseline_trends_compact.{tex,csv}
+#   Saved to:
+#     C:/Users/gabic/Dropbox/Slaves_Shif-Share_IV/WD_RR/WD_replication_files/Results
+#
+# NOTES:
+#   • Automatically detects baseline year per municipality (target: 2000)
+#   • Robust to renamed or missing columns
+#   • Generates ASCII-safe LaTeX output for direct journal submission
+################################################################################
 
 rm(list = ls()); options(stringsAsFactors = FALSE)
 
